@@ -1,0 +1,97 @@
+<!--pages/salesreport/salesreport.wxml-->
+<!--头部tab切换部分start-->
+<view class="menu">
+  <picker mode="date" fields="month" value="{{month}}" start="{{lastYearDateYearMonth}}" end="{{nowDateYearMonth}}" bindchange="bindPickerChange">
+    <view class="tabview {{currentTab=='0'?'select':'default'}}" data-current='0' bindtap="switchNav">
+      <view>{{month}}</view>
+      <image class='tab-image' src="{{currentTab=='0'?'../../assets/images/lxp-bottom-red-arrow.png':'../../assets/images/lxp-bottom-black-arrow.png'}}"></image>
+    </view>
+  </picker>
+
+  <view class="tabview {{currentTab=='1'?'select':'default'}}" data-current='1' catchtap="switchNav">
+    <view>自定义</view>
+    <image class='tab-image' src="{{currentTab=='1'?'../../assets/images/lxp-bottom-red-arrow.png':'../../assets/images/lxp-bottom-black-arrow.png'}}"></image>
+  </view>
+</view>
+
+
+<view class='custom-date-view' wx:if="{{showCustomView}}">
+  <view class='custom-left-view'>
+    <picker mode="date" value="{{customleftdate}}" start="{{lastYearDateYearMonth}}" end="{{nowDateYearMonth}}" bindchange="customPickerChange" data-key="left">
+      <text space='nbsp' class='custom-calendar-date'> {{customleftdate}} </text>
+    </picker>
+    <text space='nbsp'>——</text>
+    <picker mode="date" value="{{customrightdate}}" start="{{lastYearDateYearMonth}}" end="{{nowDateYearMonth}}" bindchange="customPickerChange" data-key="right">
+      <text space='nbsp' class='custom-calendar-date'> {{customrightdate}} </text>
+    </picker>
+  </view>
+  <view class='custom-right-view' bindtap='searchsalesreport'>搜索</view>
+</view>
+
+<view class='top-container'>
+  <view class='title-view title-view-rightline'>
+    <text>日期</text>
+  </view>
+  <view class='title-view title-view-rightline'>
+    <text>订单数</text>
+  </view>
+  <view class='title-view title-view-rightline'>
+    <text>客单价(￥)</text>
+  </view>
+  <view class='title-view title-view-rightline'>
+    <text>销售额(￥)</text>
+  </view>
+  <view class='title-view'>
+    <text>收益(￥)</text>
+  </view>
+</view>
+
+<scroll-view class='scrollview' scroll-y style="height: {{contentHeight}}rpx;" bindtap='clickContent'>
+  <view class='content-view'>
+    <view class='mid-container' wx:if="{{PartnerSales.listDetail.length>0}}">
+      <view wx:for-items="{{PartnerSales.listDetail}}" wx:key="name" wx:for-index="i">
+        <view class='clumn-container'>
+          <view class='clumn-view title-view-rightline'>
+            <text >{{item.subOrderDate}}</text>
+          </view>
+          <view class='clumn-view title-view-rightline'>
+            <text >{{item.OrderCount}}</text>
+          </view>
+          <view class='clumn-view title-view-rightline'>
+            <text >{{item.AverageAmt}}</text>
+          </view>
+          <view class='clumn-view title-view-rightline'>
+            <text class="textredcolor">{{item.TotalAmt}}</text>
+          </view>
+          <view class='clumn-view'>
+            <text class="textredcolor">{{item.ProfitAmt}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <nodata-view content='暂无报表信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+    </view>
+  </view>
+</scroll-view>
+
+<view class='bottom-container backgroundredcolor'>
+  <view class='bottom-view bottom-rightline'>
+    <text>汇总</text>
+  </view>
+  <view class='bottom-view bottom-rightline'>
+    <text>{{PartnerSales.OrderCount >0 ? PartnerSales.OrderCount : 0}}</text>
+  </view>
+  <view class='bottom-view bottom-rightline'>
+    <text>{{PartnerSales.AverageAmt.length >0 ? PartnerSales.AverageAmt : '0.00'}}</text>
+  </view>
+  <view class='bottom-view bottom-rightline'>
+    <text>{{PartnerSales.TotalAmt.length >0 ? PartnerSales.TotalAmt : '0.00'}}</text>
+  </view>
+  <view class='bottom-view'>
+    <text>{{PartnerSales.ProfitAmt.length >0 ? PartnerSales.ProfitAmt : '0.00'}}</text>
+  </view>
+</view>
+
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

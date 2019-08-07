@@ -1,0 +1,58 @@
+<!--pages/buysuccess/buysuccess.wxml-->
+
+<view class='buysuccess-message-allview'>
+
+  <view class='buysuccess-message-view'>
+    <view class='buysuccess-message-view-title textredcolor'>{{ GroupName }}</view>
+
+    <view class='buysuccess-message-view-topmessageview'>
+      <view class='buysuccess-message-view-lefthead-name'>
+        <view class='buysuccess-message-view-headimage'>
+          <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode='scaleToFill'></image>
+          <image wx:else src="../../assets/images/lxp-placeholderimage.png" mode='scaleToFill'></image>
+        </view>
+        <view class='buysuccess-message-view-name'>{{userInfo.nickName}}</view>
+      </view>
+      <image class='buysuccess-message-view-headimage-pay' src="../../assets/images/buysuccess-payicon.png" mode='scaleToFill'></image>
+    </view>
+
+    <view class='buysuccess-message-view-p'>
+      <view class='buysuccess-message-view-list' wx:for="{{productList}}" wx:for-index="i" wx:key="key" wx:if="{{i<2}}">
+        <view class='buysuccess-productname'>{{item.ProductName+' (+'+ item.BuyQty +')'}}</view>
+      </view>
+      <view wx:if="{{productList.length > 2}}">...</view>
+    </view>
+
+    <view class='buysuccess-message-view-placeholder'></view>
+  </view>
+
+  <view class='buysuccess-message-view-button'>
+    <button class='buysuccess-leftBtn button-common' bindtap='goback'>继续购物</button>
+    <button class='buysuccess-rightBtn button-common textredcolor' open-type='share'>提醒团长接单</button>
+  </view>
+
+  <view class='buysuccess-message-tip'>
+    点击上方【提醒团长接单】按钮，提醒团长及时处理您的订单！
+  </view>
+
+  <view class='buysuccess-message-view-orderview'>
+    <view>您的自提码为:</view>
+    <view class='buysuccess-message-view-ordertitle textredcolor'> {{DeliveryCode}} </view>
+  </view>
+  <view class='buysuccess-message-view-orderview'>
+    <view>预计自提时间:</view>
+    <view class='buysuccess-message-view-ordertitle textredcolor'> {{StrExpectDeliveryTime}} </view>
+  </view>
+</view>
+
+
+
+<view class='buysuccess-message-warning'>
+  <view class='buysuccess-message-imageview'>
+    <image src="../../assets/images/buysuccess-warnicon.png" mode='scaleToFill'></image>
+  </view>
+
+  <view class='buysuccess-message-warntext'>
+    安全提示：{{miniAppName}}不会以任何理由要求您提供银行卡信息或支付额外费用，请谨防钓鱼链接或诈骗电话。
+  </view>
+</view>

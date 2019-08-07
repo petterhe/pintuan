@@ -1,0 +1,7 @@
+/* pages/serviceagreement/serviceagreement.wxss */
+
+.service-text{
+  color: #333;
+  font-size: 28rpx;
+  padding: 15rpx 15rpx 68rpx 15rpx;
+}

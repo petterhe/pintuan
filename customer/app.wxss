@@ -1,0 +1,146 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+/* 适配ipx */
+.bottom_ipx {
+  bottom:68rpx!important;
+}
+
+.lxp-width{
+  width: 100%;
+}
+.backgroundredcolor{
+  background-color: #FF1541;
+}
+.textredcolor{
+  color: #FF1541;
+}
+.textwhitecolor{
+  color: white;
+}
+.textfont-size-25{
+  font-size: 25rpx;
+}
+.textfont-size-22{
+  font-size: 22rpx;
+}
+
+/* cut-off-line 分割线 */
+.cut-off-grayline{
+  height: 16rpx;
+  background-color: #F1F1F1;
+}
+.cut-off-whiteline{
+  height: 16rpx;
+  background-color: white;
+}
+
+/*普通样式*/
+
+.normal {
+  background-color: #ff1541;
+}
+
+/*禁用样式*/
+
+.disabled {
+  background-color: #ccc;
+}
+
+.detail-template {
+  margin-top: 30rpx;
+  height: 1rpx;
+}
+
+.detail-line {
+  height: 1rpx;
+  background-color: #f1f1f1;
+  margin-left: 20rpx;
+}
+
+.long-deal {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.ui_cell {
+  display: flex;
+  position: relative;
+  height: 76rpx;
+  line-height: 76rpx;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.ui_cell_hd {
+  width: 26rpx;
+  height: 26rpx;
+  /* margin-top: 10rpx;
+  margin-right: 10rpx; */
+}
+
+.ui_cell_hd image {
+  width: 100%;
+  height: 100%;
+}
+
+.ui_cell_bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  margin-left: 15rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.ui_cell_bd_must {
+  position: relative;
+}
+
+.ui_cell_bd_must:after {
+  display: inline;
+  content: '*';
+  color: #e62b2b;
+}
+
+.ui_cell_ft {
+  color: #999;
+  text-align: right;
+}
+
+.ui_cell_right {
+  width: 16rpx;
+  height: 16rpx;
+  margin: 30rpx 0 0 20rpx;
+  box-sizing: border-box;
+  border-top: 2rpx solid #666;
+  border-right: 2rpx solid #666;
+  transform: rotate(45deg);
+}
+.toast
+{
+  position:fixed;
+  bottom: 100px;
+  left: 75rpx;
+  z-index:240;
+  background-color: #000;
+  filter: Alpha(Opacity=60, Style=0);
+  opacity: 0.60;
+  color: #fff;
+  width: 600rpx;
+  padding: 16px 0;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+}

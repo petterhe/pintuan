@@ -1,0 +1,132 @@
+<!--pages/usercenter/usercenter.wxml-->
+
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+<import src="../../components/cut-off-line/cut-off-whiteline.wxml" />
+
+<view class="userinfo">
+  <block wx:if="{{!hasUserInfo}}">
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="../../assets/images/lxp-placeholderimage.png" mode="aspectFill"></image>
+    <button class='createstore-getphonenum-button' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
+  </block>
+  <block wx:else>
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block>
+  <button wx:if="{{hasUserInfo}}" class='createstore-getphonenum-button' bindtap='clickcreatestore'>申请成为团长</button>
+</view>
+
+<view wx:if="{{visitlist}}">
+  <template is="cut-off-grayline" />
+  <view class="usercenter-title-view">
+    <view class='usercenter-title-view-title'>推荐店铺</view>
+  </view>
+  <view wx:if="{{visitlist}}">
+    <view class="visitstore-view" wx:for-items="{{visitlist}}" wx:key="name">
+      <view class="visitstore-left">
+        <image mode='aspectFill' src="{{item.PartnerImageUrl ? item.PartnerImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+      </view>
+      <view class='visitstore-center'>
+        <view class="visitstore-center-name">{{item.PartnerName}}</view>
+        <view class="visitstore-center-desc">{{item.PartnerDesc}}</view>
+        <view class="visitstore-center-desc" wx:if="{{item.Placemarks.length >0}}">{{item.Placemarks}}
+          <text class='textredcolor' wx:if="{{item.DistanctDesc.length >0}}">({{item.DistanctDesc}})</text>
+        </view>
+      </view>
+      <view class='visitstore-right' bindtap='clicktostore' data-partnersysno="{{item.PartnerSysNo}}">
+        <view class='visitstore-right-view'>进入店铺</view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <nodata-view content='暂无访问的店' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</view>
+
+<view hidden='{{!showGisPartner}}'>
+  <template is="cut-off-grayline" />
+  <view class="usercenter-title-view">
+    <view class='usercenter-title-view-title'>附近店铺({{nearbyStoreList.length}})</view>
+    <view class='changelocation' bindtap='chooseLocation'>
+      <view class='changelocation_right'></view>
+      <view class='changelocation-address'>{{storePlacemarks}}</view>
+    </view>
+  </view>
+  <view wx:if="{{nearbyStoreList}}">
+    <view class="visitstore-view" wx:for-items="{{nearbyStoreList}}" wx:key="name">
+      <view class="visitstore-left">
+        <image mode='aspectFill' src="{{item.PartnerImageUrl ? item.PartnerImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+      </view>
+      <view class='visitstore-center'>
+        <view class="visitstore-center-name">{{item.PartnerName}}</view>
+        <view class="visitstore-center-desc">{{item.PartnerDesc}}</view>
+        <view class="visitstore-center-desc" wx:if="{{item.Placemarks.length >0}}">{{item.Placemarks}}
+          <text class='textredcolor' wx:if="{{item.DistanctDesc.length >0}}">({{item.DistanctDesc}})</text>
+        </view>
+      </view>
+      <view class='visitstore-right' bindtap='clicktostore' data-partnersysno="{{item.PartnerSysNo}}">
+        <view class='visitstore-right-view'>进入店铺</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<template is="cut-off-grayline" />
+
+<view class="{{isIpx?'usercenter-buyrecord-view-ipx':''}}">
+  <view class="usercenter-title-view">
+    <view class='usercenter-title-view-title'>我的订单</view>
+  </view>
+  <view wx:if="{{joinlist}}">
+    <view wx:for-items="{{joinlist}}" wx:key="name">
+      <view class="order-joincontent">
+        <!-- <view class="order-joincontent-left-title">{{item.PartnerName}} {{item.PartnerStatus ==1 ?'':'(已失效)'}}</view> -->
+        <view class="order-joincontent-left-desc" wx:if="{{item.DeliveryCode.length >0}}">
+          <view>自 提 码：
+            <text class='textredcolor'> {{item.DeliveryCode}}</text>
+          </view>
+        </view>
+        <view class="order-joincontent-left-desc">订单编号：{{item.SOSysNo}}
+          <text class='order-copyno textredcolor' catchtap='copySOSysNo' hover-stop-propagation='true' data-sosysno='{{item.SOSysNo}}' space='nbsp'> 复制单号 </text>
+        </view>
+        <view class="order-joincontent-left-desc">订单状态：{{item.StatusName +'\t(' + item.PayStatusName +')'}}</view>
+        <view class="order-joincontent-left-desc">店铺名称：{{item.PartnerName}}</view>
+        <view class="order-joincontent-left-desc">付款时间：{{item.StrPayTime}}</view>
+        <view class="order-joincontent-left-desc">自提时间：{{item.StrExpectDeliveryTime}}</view>
+        <view class="order-joincontent-left-des long-deal" bindtap='clickToReceiveAddress' data-index='{{index}}'>自提地址：{{item.ReceiveAddress}}</view>
+        <view class="order-joincontent-left-desc">
+          <view>付款金额：<text class='textredcolor'>¥{{item.TotalAmt/100}}</text>
+          </view>
+        </view>
+
+        <view class="order-contentlist">
+          <view class="order-contentlist-left">
+            <view class="order-contentlist-left-desc">购买详情：</view>
+          </view>
+          <view class="order-contentlist-right">
+            <view wx:for-items="{{item.ListOrderItem}}" wx:key="name">{{item.ProductName}}{{item.ProductDesc}}({{item.Price/100}}元/份x{{item.ActualQty}})</view>
+          </view>
+        </view>
+      </view>
+      <view class='order-reimburse-button-view' wx:if="{{item.IsCanCancel == 1}}">
+        <button bindtap='cancelOrder' data-sosysno='{{item.SOSysNo}}'>取消订单</button>
+      </view>
+      <view class='order-reimburse-button-view' wx:elif="{{item.IsCanCustomerReceive == 1}}">
+        <button bindtap='signForOrder' data-sosysno='{{item.SOSysNo}}'>订单签收</button>
+      </view>
+      <template wx:if="{{!(index == joinlist.length-1)}}" is="cut-off-grayline" />
+    </view>
+  </view>
+  <view wx:else>
+    <nodata-view content='暂无订单信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</view>
+
+<template is="cut-off-whiteline" />
+<template is="cut-off-whiteline" />
+<template is="cut-off-whiteline" />
+<template is="cut-off-whiteline" />
+<template is="cut-off-whiteline" />
+
+
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

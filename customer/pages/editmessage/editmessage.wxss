@@ -1,0 +1,53 @@
+/* pages/editmessage/editmessage.wxss */
+
+.createstore-storeIcon-view {
+  display: flex;
+  justify-content: center;
+}
+
+.createstore-storeIcon {
+  position: relative;
+  width: 170rpx;
+  height: 170rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 85rpx;
+}
+
+.createstore-storeIcon-progress {
+  font-size: 24rpx;
+  color: #fff;
+  width: 170rpx;
+  height: 170rpx;
+  text-align: center;
+  line-height: 170rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border-radius: 8rpx; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createstore-getphonenum-button {
+  color: white;
+  font-size: 28rpx;
+  width: 140rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #ff1541;
+}
+
+.createstore-bottombutton {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 50px 15px 40px 15px;
+  color: white;
+  background-color: #ff1541;
+  border-radius: 0;
+}
+
+.createstore-bottombutton::after {
+  border: none;
+  border-radius: 0;
+}

@@ -1,0 +1,153 @@
+<!--pages/home/home.wxml-->
+
+<import src="../../components/cut-off-line/cut-off-whiteline.wxml" />
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+
+<view class='home_topBg_image_view'>
+  <image class='home_topBg_image' src="../../assets/images/lxp-hometopbg.png" mode="scaleToFill"></image>
+  <view class="home_section" hidden="{{!PartnerInfo.PartnerName}}">
+    <view class="home_section_items">
+      <!--image-->
+      <view class="home_section_image" data-aid="{{item.id}}">
+        <image class="home_section_bgimage" src="../../assets/images/lxp-homeiconbg.png" mode="aspectFill"></image>
+
+        <image class='home_section_headimage' mode='aspectFill' src="{{PartnerInfo.PartnerImageUrl ? PartnerInfo.PartnerImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+
+      </view>
+      <!--content-->
+      <view class="home_section_cont" data-aid="{{item.id}}">
+        <view class="home_section_cont_sub">
+          <view class='home_section_cont_partnerName'>{{PartnerInfo.PartnerName}}</view>
+          <text class='home_section_cont_buyUserCount' space='nbsp'> 粉丝数: {{PartnerInfo.PartnerSeeBuyInfo.BuyUserCount}}</text>
+        </view>
+        <view class="home_section_cont_price">{{PartnerInfo.PartnerDesc}}</view>
+      </view>
+      <!--book-->
+      <view class="home_section_book" hover-class='share-hover' bindtap="clicktoshare" data-aid="{{item.id}}">
+        <button class='publish-uploader_item_icon' open-type="share" />
+        <image class='home_section_book_image' src="../../assets/images/lxp-home-shareicon.png" mode="scaleToFill"></image>
+      </view>
+      <!-- <view class="home_section_book" bindtap="clicktohome" data-aid="{{item.id}}" hidden='{{ CustomerInfo.CustomerType == 1 }}'>
+        <image class='home_section_book_image' src="../../assets/images/lxp-home-homeicon.png" mode="scaleToFill"></image>
+      </view> -->
+    </view>
+
+    <!-- 底部地址 团购view -->
+    <view class='home_bottom_view'>
+      <view class='home_bottom_leftview' bindtap='clicktoaddressmap'>
+        <image class='home_bottom_view_icon' src="../../assets/images/lxp-homelocationicon.png" mode="scaleToFill">
+        </image>
+        <text class='home_bottom_leftview-address-text'>{{PartnerInfo.Placemarks}} {{PartnerInfo.Address}}</text>
+        <image class='home_bottom_view_icon' src="../../assets/images/lxp-whitearrow.png" mode="scaleToFill">
+        </image>
+      </view>
+      <text class='home_bottom_view_group'>{{GroupingList.length >0 ?GroupingList.length: 0}}个团购</text>
+    </view>
+  </view>
+  <image class='home_store_tag' src='{{PartnerGradeIcon}}' mode="scaleToFill">
+  </image>
+
+
+  <text class='home-rest-button textredcolor' hidden="{{!PartnerInfo.PartnerName}}" bindtap="{{PartnerStatusTap ?'changepartnerstatues':''}}" space='nbsp'>{{ PartnerStatusStr }}</text>
+</view>
+
+<!-- <view class='home-middle-view'></view> -->
+<view class="bottom-btn" hidden='{{ CustomerInfo.CustomerType != 1 }}'>
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='1'>
+    <button class='home-button home-button-line'>
+      <view class='home-money textredcolor'>¥{{PartnerProfit.ProfitAmt/100}}</view>
+      <view>收益</view>
+    </button>
+  </view>
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='2'>
+    <button class='home-button home-button-line'>
+      <image class='btnImg' src='../../assets/images/home-middlebutton-order.png'></image>
+      <view>订单管理</view>
+    </button>
+  </view>
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='3'>
+    <button class='home-button home-button-line'>
+      <image class='btnImg' src='../../assets/images/home-middlebutton-acount.png'></image>
+      <view>账户管理</view>
+    </button>
+  </view>
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='4'>
+    <button class='home-button home-button-line'>
+      <image class='btnImg' src='../../assets/images/home-middlebutton-salesreport.png'></image>
+      <view>销售报表</view>
+    </button>
+  </view>
+
+  <view class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='5'>
+    <button class='home-button'>
+      <image class='btnImg' src='../../assets/images/home-middlebutton-salesrank.png'></image>
+      <view>活跃度</view>
+    </button>
+  </view>
+
+  <view wx:if="{{isShowPartnerReceive == 1}}" class="l l-collect" hover-class="active" bindtap="openIndexPage" data-index='6'>
+    <button class='home-button'>
+      <image class='btnImg' src='../../assets/images/home-middlebutton-productcomfire.png'></image>
+      <view>到货确认</view>
+    </button>
+  </view>
+</view>
+<template wx:if="{{ CustomerInfo.CustomerType == 1 }}" is="cut-off-grayline" />
+
+<!-- <view class="home-productlist-view {{isIpx?'home-productlist-view_ipx':''}}">
+  <view wx:if="{{GroupingList}}">
+    <block wx:for="{{GroupingList}}" wx:key="key">
+      <view class='nav_section_parent' bindtap="navigateDetail" data-plansysno="{{item.PlanSysNo}}">
+        <image class='nav_section_bgimage' mode='widthFix' src='../../assets/images/lxp-homeproductbg.png'></image>
+        <view class="nav_section_items">
+          <view class="section_image">
+            <image src="{{item.ImageUrl ? item.ImageUrl:'../../assets/images/lxp-placeholderimage.png'}}" mode="aspectFill"></image>
+          </view>
+          <view class="section_cont" data-aid="{{item.StatusName}}">
+            <view class="section_cont_sub">
+              <text>{{item.GroupName}}</text>
+            </view>
+            <view class="section_cont_desc">{{item.GroupDesc}}</view>
+            <view class="section_cont_visit">{{item.CityName}}</view>
+            <view class="section_cont_date">{{item.StrStartTime}}</view>
+          </view>
+
+          <view class="section_book" bindtap="bookTap" data-aid="{{item.id}}">
+            <text style="color:{{item.Status ==1? '#FFD301':'#999999'}}">{{item.StatusName}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:else>
+    <nodata-view content='暂无团购信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</view> -->
+
+<view class="home-productlist-view {{isIpx?'home-productlist-view_ipx':''}}">
+  <view wx:if="{{GroupingList}}">
+    <view class="home-productlist-grids">
+      <view class="home-productlist-grid" hover-class='hover' wx:for="{{GroupingList}}" wx:key="name">
+        <view class='home-productlist-grid__bg' bindtap="navigateDetail" data-plansysno="{{item.PlanSysNo}}">
+          <view class="home-productlist-grid__icon">
+            <!-- <image src="{{item.ImageUrl ? item.ImageUrl:'../../assets/images/lxp-placeholderimage.png'}}" mode="scaleToFill" /> -->
+            <image src="{{item.EC2ImageUrl ? item.EC2ImageUrl:item.ImageUrl}}" mode="scaleToFill" />
+          </view>
+          <text class="home-productlist-grid__label">{{item.GroupName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <nodata-view content='暂无团购信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</view>
+
+<template is="cut-off-whiteline" />
+<template is="cut-off-whiteline" />
+
+<!-- 个人中心 -->
+<view class="home-usercenter-view {{isIpx?'home-usercenter-view_ipx':''}}" hidden='{{ CustomerInfo.CustomerType == 1 }}' bindtap="clicktohome">
+  <image class='home-usercenter-view-btnImg' src='../../assets/images/home-usercenter.png'></image>
+</view>

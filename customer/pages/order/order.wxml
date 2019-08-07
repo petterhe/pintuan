@@ -1,0 +1,77 @@
+<!--pages/order/order.wxml-->
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+
+<van-tabs swipeable animated active="{{ 0 }}" color="#FF1541" line-width="{{ 30 }}" bind:change="onChange">
+  <van-tab wx:for="{{tabsMore}}" wx:key="index" title="{{ item }}">
+
+    <scroll-view wx:if="{{index == 0}}" scroll-y style='height: {{scrollHeight + "px"}}' class="content" bindscrolltolower='scrollToLower' bindscrolltoupper='scrollToUpper' lower-threshold='30' upper-threshold='0'>
+      <view wx:if="{{grouplist.length >0}}">
+        <view wx:for-items="{{grouplist}}" wx:key="name">
+          <view class="order-content" bindtap='navigateDetail' data-plansysno='{{item.PlanSysNo}}'>
+            <view class="order-content-left">
+              <view class="order-content-left-title">{{item.GroupName}}</view>
+              <view class="order-content-left-desc">开始时间：{{item.StrStartTime}}</view>
+              <view class="order-content-left-desc">结束时间：{{item.StrEndTime}}</view>
+              <view class="order-content-left-desc">订单金额：{{item.GroupSeeBuyInfo.TotalAmt/100.00}}</view>
+              <view class="order-content-left-desc">订单数量：{{item.GroupSeeBuyInfo.BuyCount}}</view>
+              <view class="order-content-left-desc">签收人数：{{item.GroupSeeBuyInfo.FinishCount}}</view>
+            </view>
+            <view class="order-content-right" style="color:{{item.Status ==1? '#FFD301':'#999999'}}">{{item.StatusName}}</view>
+          </view>
+
+          <view class='order-content-button-view' wx:if="{{item.ShowPartnerReceive == 1}}">
+            <button bindtap='confirmreceipt' data-plansysno='{{item.PlanSysNo}}' data-index='{{index}}'>到货确认</button>
+          </view>
+          <template wx:if="{{!(index == grouplist.length-1)}}" is="cut-off-grayline" />
+        </view>
+
+        <view class='order-content-loading' hidden='{{hidden}}'>
+          数据加载中...
+        </view>
+      </view>
+      <view wx:else>
+        <nodata-view content='暂无团购信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+      </view>
+    </scroll-view>
+
+    <scroll-view wx:elif="{{index == 1}}" scroll-y style='height: {{scrollHeight + "px"}}' class="content">
+      <view wx:if="{{joinlist.length >0}}">
+        <view wx:for-items="{{joinlist}}" wx:key="name">
+          <view class="order-joincontent" bindtap="{{item.PartnerStatus ==1 ?'clickToGroupDetail':''}}" data-plansysno='{{item.PlanSysNo}}'>
+            <view class="order-joincontent-left-title">{{item.PartnerName}} {{item.PartnerStatus ==1 ?'':'(已失效)'}}</view>
+            <view class="order-joincontent-left-desc">订单编号：{{item.SOSysNo}}
+              <text class='order-copyno textredcolor' catchtap='copySOSysNo' hover-stop-propagation='true' data-sosysno='{{item.SOSysNo}}' space='nbsp'> 复制单号 </text>
+            </view>
+            <view class="order-joincontent-left-desc">订单状态：{{item.StatusName +'\t(' + item.PayStatusName +')'}}</view>
+            <view class="order-joincontent-left-desc">付款时间：{{item.StrPayTime}}</view>
+            <view class="order-joincontent-left-desc">自提时间：{{item.StrExpectDeliveryTime}}</view>
+            <view class="order-joincontent-left-desc">付款金额：{{item.TotalAmt/100}}</view>
+
+            <view class="order-contentlist">
+              <view class="order-contentlist-left">
+                <view class="order-contentlist-left-desc">购买详情：</view>
+              </view>
+              <view class="order-contentlist-right">
+                <view wx:for-items="{{item.ListGroupOrderItem}}" wx:key="name">{{item.ProductName+'(+'+ item.ActualQty +')'}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='order-reimburse-button-view' wx:if="{{item.PlanStatus ==1 && item.Status >0}}">
+            <button bindtap='cancelOrder' data-sosysno='{{item.SOSysNo}}'>取消订单</button>
+          </view>
+          <view class='order-reimburse-button-view' wx:elif="{{item.PlanStatus ==2 && item.Status >0 && item.Status <5}}">
+            <button bindtap='signForOrder' data-sosysno='{{item.SOSysNo}}'>订单签收</button>
+          </view>
+          <template wx:if="{{!(index == joinlist.length-1)}}" is="cut-off-grayline" />
+        </view>
+      </view>
+      <view wx:else>
+        <nodata-view content='暂无团购信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+      </view>
+    </scroll-view>
+
+  </van-tab>
+</van-tabs>
+
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

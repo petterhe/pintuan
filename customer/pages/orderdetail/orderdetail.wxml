@@ -1,0 +1,59 @@
+<!--pages/orderdetail/orderdetail.wxml-->
+
+<van-tabs swipeable animated active="{{ 0 }}" color="#FF1541" line-width="{{ 30 }}" bind:change="onChange">
+  <van-tab wx:for="{{tabsMore}}" wx:key="index" title="{{ item }}">
+
+    <view wx:if="{{index == 0}}" class='orderdetail-content' style='height: {{contentHeight + "px"}}'>
+      <view wx:if="{{groupOrderList}}">
+        <view class='orderdetail-toptitle-view'>
+          <view class='orderdetail-toptitle-left1'>订单编号</view>
+          <view class='orderdetail-toptitle-left2'>用户</view>
+          <view class='orderdetail-toptitle-left3'>商品</view>
+        </view>
+
+        <scroll-view scroll-y style='height: {{scrollHeight + "px"}}'>
+          <view wx:for-items="{{groupOrderList}}" wx:key="name" wx:index="index">
+            <view class="orderdetail-scrollviewcontent">
+              <view class="orderdetail-toptitle-left1">{{item.SOSysNo}}</view>
+              <view class="orderdetail-toptitle-left2">{{item.ReceiveName}}</view>
+              <view class="orderdetail-toptitle-left3">
+                <view wx:for-items="{{item.ListGroupOrderItem}}" wx:key="name">{{item.ProductName+'(+'+ item.ActualQty +')'}}</view>
+              </view>
+            </view>
+            <view class='orderdetail-line'></view>
+          </view>
+        </scroll-view>
+      </view>
+      <view wx:else>
+        <nodata-view content='暂无订单信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+      </view>
+    </view>
+    <view wx:elif="{{index == 1}}" class='orderdetail-content' style='height: {{contentHeight + "px"}}'>
+      <view wx:if="{{groupOrderProductSum}}">
+        <view class='orderdetail-toptitle-view'>
+          <view class='orderdetail-toptitle-right1'>序号</view>
+          <view class='orderdetail-toptitle-right2'>商品</view>
+          <!-- <view class='orderdetail-toptitle-right3'>规格</view> -->
+          <view class='orderdetail-toptitle-right4'>数量</view>
+        </view>
+        <scroll-view scroll-y style='height: {{scrollHeight + "px"}}'>
+          <view wx:for-items="{{groupOrderProductSum}}" wx:key="name" wx:index="index">
+            <view class="orderdetail-scrollviewcontent">
+              <view class="orderdetail-toptitle-right1">{{index +1}}</view>
+              <view class="orderdetail-toptitle-right2">
+                <view>{{item.ProductName +' (' + item.ProductSysNo + ')'}}</view>
+                <!-- <view wx:for-items="{{item}}" wx:key="name">{{item.ProductName}}</view> -->
+              </view>
+              <!-- <view class="orderdetail-toptitle-right3">{{item.price}}</view> -->
+              <view class="orderdetail-toptitle-right4">{{item.ActualQty}}</view>
+            </view>
+            <view class='orderdetail-line'></view>
+          </view>
+        </scroll-view>
+      </view>
+      <view wx:else>
+        <nodata-view content='暂无商品信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+      </view>
+    </view>
+  </van-tab>
+</van-tabs>

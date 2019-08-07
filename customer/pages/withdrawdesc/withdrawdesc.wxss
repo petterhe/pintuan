@@ -1,0 +1,6 @@
+/* pages/withdrawdesc/withdrawdesc.wxss */
+.withdrawdesc-text{
+  margin: 20rpx 20rpx 40rpx 20rpx;
+  color: #333;
+  font-size: 26rpx;
+}

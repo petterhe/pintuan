@@ -1,0 +1,154 @@
+/* pages/createstore/createstore.wxss */
+
+.createstore-form-content{
+  margin-bottom: 20rpx;
+}
+
+.createstore-form-content-ipx{
+  margin-bottom: 68rpx;
+}
+
+.createstore-storeIcon-view {
+  display: flex;
+  justify-content: center;
+}
+
+.createstore-storeIcon-view-radio{
+  border-radius: 85rpx;
+}
+
+.createstore-storeIcon {
+  position: relative;
+  width: 170rpx;
+  height: 170rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.createstore-storeIcon-progress {
+  font-size: 24rpx;
+  color: #fff;
+  width: 170rpx;
+  height: 170rpx;
+  text-align: center;
+  line-height: 170rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border-radius: 8rpx; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createstore-getphonenum-button {
+  color: white;
+  font-size: 28rpx;
+  width: 140rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #ff1541;
+}
+
+.createstore-getphonenum-button::after {
+  border: none;
+}
+
+.createstore-copygroup-button {
+  color: orange;
+}
+
+.createstore-uploader__view {
+  display: flex;
+}
+
+.createstore-field-signtitle {
+  width: 85px;
+}
+
+.createstore-uploader__bd {
+  position: relative;
+  flex: 2;
+  height: 120px;
+  margin: 15px 15px 0px 20px;
+  overflow: hidden;
+}
+.createstore-storeIcon-progressline{
+  width: 100%;
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+}
+
+.createstore-uploader-progress {
+  font-size: 24rpx;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createstore-uploader__file {
+  float: left;
+  position: relative;
+  margin-right: 9px;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+.createstore-uploader_item_icon {
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.createstore-uploader__img {
+  display: block;
+  width: 62px;
+  height: 62px;
+}
+
+.createstore-uploader__input {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.createstore_agree {
+  display: flex;
+  font-size: 9pt;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin: 10rpx 30rpx 80rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.createstore_agree_text {
+  height: 70rpx;
+  line-height: 70rpx;
+  color: rgb(83, 83, 179);
+}
+
+.createstore-bottombutton {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 20rpx 20rpx 0rpx 20rpx;
+  color: white;
+  background-color: #ff1541;
+  border-radius: 0;
+  bottom: 68rpx;
+}
+
+.createstore-bottombutton::after {
+  border: none;
+  border-radius: 0;
+}

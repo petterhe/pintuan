@@ -1,0 +1,307 @@
+<!--pages/groupdetail/groupdetail.wxml-->
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+<import src="../../components/cut-off-line/cut-off-whiteline.wxml" />
+
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class='detail-storemessage-view'>
+    <view class='detail-storemessage-view-left' bindtap='openStore'>
+      <view class='detail-buyrecord-view-headimage'>
+        <image mode='scaleToFill' src="{{PartnerInfo.PartnerImageUrl ? PartnerInfo.PartnerImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+      </view>
+      <view class='detail-storemessage-view-name'>{{PartnerInfo.PartnerName}}</view>
+      <view class='detail-storemessage-view-BuyUserCount'>粉丝数: {{PartnerInfo.PartnerSeeBuyInfo.BuyUserCount}}</view>
+    </view>
+
+    <view class='detail-storemessage-view-right'>
+
+      <button class="detail-storemessage-view-right-share-button" open-type='share'>
+      </button>
+      <image class='detail-storemessage-view-right-share' src="../../assets/images/lxp-home-shareicon-black.png" mode="scaleToFill">
+      </image>
+      <image class='detail-storemessage-view-right-home' hover-class='hover' bindtap="openIndexPage" data-index='1' src="../../assets/images/lxp-home-homeicon-black.png" mode="scaleToFill">
+      </image>
+    </view>
+  </view>
+
+  <view wx:if="{{GroupingList}}">
+    <view hidden='{{!fixed}}' class="home-productlist-grids section-placeholder"></view>
+    <view class="home-productlist-grids {{fixed ? 'section-fixed':''}}">
+
+      <scroll-view scroll-x="{{GroupingList.length >5 ?'true':''}}" class='home-scrollview' scroll-with-animation="true" id="scroll-view" scroll-left="{{ scrollLeft }}">
+        <view class="home-productlist-grid  {{item.select ?'select':''}} {{GroupingList.length >5 ?'home-con-six':'home-con-five'}}" wx:for="{{GroupingList}}" wx:key="name" bindtap='changeGroup' data-plansysno='{{item.PlanSysNo}}' id="item-{{item.PlanSysNo}}">
+          <view class="home-productlist-grcontent">
+            <!-- <image class='home-productlist-grid__image' src="{{item.ImageUrl ? item.ImageUrl:'../../assets/images/lxp-placeholderimage.png'}}" mode="scaleToFill" /> -->
+            <image class='home-productlist-grid__image' src="{{item.EC2ImageUrl ? item.EC2ImageUrl:item.ImageUrl}}" mode="scaleToFill" />
+            <text class="home-productlist-grid__label">{{item.GroupName}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+    </view>
+  </view>
+
+
+  <view class='detail-topproduct-view'>
+    <image class='detail-topproduct-image' mode='aspectFill' src="{{GroupDetailData.ImageUrl ? GroupDetailData.ImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+    <view class='image-bottom-descview'>
+
+      <view class='image-bottom-view'>
+        <image class='image-bottom-image' src='../../assets/images/product-detailimage-new-bg.png'></image>
+
+        <view class="image-bottom-view-pricenum-left" hidden="{{!ListGroupProduct[0].Price}}">
+          <view class="image-bottom-view-pricenum-left-price">¥{{ListGroupProduct[0].Price/100}}
+            <view class="image-bottom-view-pricenum-OriginalPrice">¥{{ListGroupProduct[0].OriginalPrice/100}}</view>
+          </view>
+          <view class='image-bottom-view-countdown-view'>
+            <text class='image-bottom-view-countdown-text'>{{countdown}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='detail-productmessage-view'>
+    <view class='detail-productmessage-leftview-desc'>
+      <view class='detail-productmessage-product-desc'>{{GroupDetailData.GroupName}}</view>
+      <view class='detail-productmessage-visittext'>
+        浏览:{{GroupDetailData.GroupSeeBuyInfo.SeeUserCount}} 购买:{{GroupDetailData.GroupSeeBuyInfo.BuyCount}}
+      </view>
+    </view>
+    <view class='detail-productmessage-leftview-title'> {{GroupDetailData.GroupDesc}}</view>
+  </view>
+
+  <!-- 悬浮倒计时 -->
+  <!-- <view class="detail-countdown-view {{GroupDetailData.Status ==1 ? 'detail-countdown-view-red':'detail-countdown-view-gary'}}">
+    <text class='detail-countdown-text'>{{countdown}}</text>
+  </view> -->
+
+  <view>
+    <view class='detail-line'></view>
+    <view class='ui_cell' bindtap="clicktodetail" data-aid="1">
+      <view class='ui_cell_hd'>
+        <image src="../../assets/images/detail-cell-takedate.png"></image>
+      </view>
+      <view class='ui_cell_bd'>自提时间: {{GroupDetailData.StrDeliveryDate}}</view>
+    </view>
+
+    <view class='detail-line'></view>
+    <view class='ui_cell' bindtap="clicktodetail" data-aid="2">
+      <view class='ui_cell_hd'>
+        <image src="../../assets/images/detail-cell-location.png"></image>
+      </view>
+      <view class='ui_cell_bd texthidden'>自提地址: {{PartnerInfo.Placemarks}} {{PartnerInfo.Address}}</view>
+      <view class='ui_cell_right'></view>
+    </view>
+
+    <view class='detail-line'></view>
+    <view class='ui_cell' bindtap="clicktodetail" data-aid="3" data-name="{{PartnerInfo.PartnerPhone}}">
+      <view class='ui_cell_hd'>
+        <image src="../../assets/images/detail-cell-phone.png"></image>
+      </view>
+      <view class='ui_cell_bd'>团长电话: {{PartnerInfo.PartnerPhone}}</view>
+      <view class='ui_cell_right'></view>
+    </view>
+  </view>
+
+  <template is="cut-off-grayline" />
+
+  <view class='home-productlist-view' style="margin-bottom: {{bottom}};">
+    <view wx:if="{{ListGroupProduct}}">
+      <view wx:for="{{ListGroupProduct}}" wx:key="key">
+        <view class='home-productlist-contentview'>
+          <view class='home-productlist-contentview-image' bindtap="showModal" data-index='{{index}}'>
+            <image wx:if="{{item.ProductImageUrl}}" src="{{item.ProductImageUrl}}" mode='scaleToFill'></image>
+            <image wx:else src="../../assets/images/lxp-placeholderimage.png" mode='scaleToFill'></image>
+          </view>
+          <view class='home-productlist-contentview-content'>
+            <view class='home-productlist-contentview-desc'>
+              <view class='home-productlist-contentview-desc-content'>
+                <view class="home-productlist-contentview-title1">{{item.ProductName}}</view>
+                <view class="home-productlist-contentview-title2">{{item.ProductDesc}}
+                  <text wx:if="{{item.LimitTips.length >0}}" class='textredcolor'> [{{item.LimitTips}}]</text>
+                </view>
+              </view>
+              <view class="home-productlist-contentview-title3">
+                <text space='nbsp'>剩余{{item.OnlineQty}}  已售{{item.TotalSalesQty}}</text>
+              </view>
+
+            </view>
+            <view class='home-productlist-contentview-pricenum'>
+              <view class="home-productlist-contentview-pricenum-left">¥{{item.Price/100}}
+                <view class="home-productlist-contentview-pricenum-OriginalPrice">¥{{item.OriginalPrice/100}}</view>
+              </view>
+              <view class="home-productlist-detail-stepper">
+
+                <view wx:if="{{item.OnlineQty >0}}">
+                  <button hidden="{{ GroupDetailData.Status !=1 }}" wx:if="{{!hasUserInfo}}" class='publish-uploader_item_icon' open-type="getUserInfo" data-index='{{index}}' data-productsysno='{{item.ProductSysNo}}' bindgetuserinfo="getUserInfo" />
+                  <!-- 减号 -->
+                  <view class="detail-stepper-text" data-index='{{index}}' data-productsysno='{{item.ProductSysNo}}' bindtap="bindMinus">
+                    <image class='detail-stepper-addproduct-image' src="{{item.minusStatus =='disabled'?'../../assets/images/product-minus-disable.png':'../../assets/images/product-minus-adle.png'}}" mode="scaleToFill"></image>
+                  </view>
+                  <!-- 数值 -->
+                  <input type="number" disabled='true' bindchange="bindManual" value="{{item.BuyQty}}" />
+                  <!-- 加号 -->
+                  <view class="detail-stepper-text" data-index='{{index}}' data-productsysno='{{item.ProductSysNo}}' bindtap="{{(GroupDetailData.Status ==1 && item.OnlineQty >0) ? 'bindPlus':''}}">
+                    <image class='detail-stepper-addproduct-image' src="{{(GroupDetailData.Status ==1 && item.OnlineQty >0) ?'../../assets/images/product-add.png':'../../assets/images/product-add-disable.png'}}" mode="scaleToFill"></image>
+                  </view>
+                </view>
+                <view wx:else class='home-productlist-detail-saveout'> 已售罄</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="{{index == ListGroupProduct.length-1 ?'orderdetail-white-line':'orderdetail-line'}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <template is="{{orderlist.length>0 ? 'cut-off-grayline':'cut-off-whiteline'}}" />
+
+  <!-- 购买记录 -->
+  <view wx:if="{{orderlist}}" class="{{isIpx?'detail-buyrecord-bgview_ipx':'detail-buyrecord-bgview'}}">
+    <view wx:if="{{GroupDetailData.GroupSeeBuyInfo.GroupDetailBuyTips.length >0}}" class='detail-buyrecord-toptitledesc'>{{GroupDetailData.GroupSeeBuyInfo.GroupDetailBuyTips}}
+    </view>
+    <view class='detail-buyrecord-view' wx:for="{{orderlist}}" wx:key="key">
+      <view class='detail-buyrecord-view-topmessageview'>
+        <view class='detail-buyrecord-view-index'>{{GroupDetailData.GroupSeeBuyInfo.BuyCount >0? GroupDetailData.GroupSeeBuyInfo.BuyCount -index : orderlist.length - index}}</view>
+        <view class='detail-buyrecord-view-headimage'>
+          <image wx:if="{{item.AvatarUrl}}" src="{{item.AvatarUrl}}" mode='scaleToFill'></image>
+          <image wx:else src="../../assets/images/lxp-placeholderimage.png" mode='scaleToFill'></image>
+        </view>
+        <view class='detail-buyrecord-view-name'>{{item.ReceiveName}}</view>
+        <view class='detail-buyrecord-view-time'>{{item.StrPayTime}}</view>
+      </view>
+      <view class='detail-buyrecord-view-list' wx:for="{{item.ListGroupOrderItem}}" wx:key="key">{{item.ProductName+' (+'+ item.ActualQty +')'}}</view>
+      <view class="{{index == orderlist.length-1 ?'detail-buyrecord-white-line':'detail-buyrecord-line'}}"></view>
+    </view>
+
+    <view wx:if="{{GroupDetailData.GroupSeeBuyInfo.BuyCount >orderlist.length}}" class='detail-buyrecord-view-more'>···</view>
+  </view>
+
+  <view class="bottom-btn {{isIpx?'bottom_height_ipx':''}}">
+    <view class="l l-collect" hover-class="active" bindtap="{{buyProductList.length >0 ?'openCart':''}}">
+      <text class='cart-num' wx:if="{{allBuyQty >0}}" space='nbsp'> {{allBuyQty}} </text>
+      <image class="icon-index" src='../../assets/images/detail-bottom-cart-black.png'></image>
+    </view>
+    <view class="l l-collect" hover-class="active" bindtap="{{GroupDetailData.Status ==1 ? 'openIndexPage':''}}" data-index='2'>
+      <image class="icon-index" src="../../assets/images/detail-bottom-share-black.png"></image>
+      <button open-type="share" class="bottom_share {{isIpx?'bottom_ipx':''}}"></button>
+    </view>
+    <view wx:if="{{CustomerInfo.CustomerType == 1}}" class="l l-collect" hover-class="active" bindtap="{{GroupDetailData.Status ==1 ? 'openIndexPage':''}}" data-index='3'>
+      <image class="icon-index" src="../../assets/images/detail-bottom-friend-black.png"></image>
+      <!-- <button open-type="share" class="bottom_share {{isIpx?'bottom_ipx':''}}"></button> -->
+    </view>
+    <button class="r" hover-class="active" loading='{{loading}}' disabled='{{disable}}' disabled='{{allProductPrice/100 >0 ? false:true}}' bindtap="clickToBuy" form-type="submit">{{allBuyQty >0? '共'+allBuyQty+'件':''}} 去支付
+      <text class='detail-allprice-text'>{{allProductPrice/100 >0 ? '¥'+allProductPrice/100:''}}</text>
+    </button>
+  </view>
+
+  <!-- 置顶 -->
+  <!-- <image hidden='{{totopHidden}}' class="totop-image {{isIpx?'totop-ipx-bottom':''}}" src="../../assets/images/xcx-totop.png" bindtap='clicktotop'></image> -->
+
+  <!-- 购买记录弹幕 -->
+  <view class="detail-doommview {{fixed ?'detail-doommview-top':''}}" wx:if="{{doommData.length >0}}">
+    <block wx:for="{{doommData}}" wx:key="id">
+      <view wx:if="{{item.display}}" class="detail-aon" style="animation: first {{item.time}}s ease-in-out forwards;top:80%;color:{{item.color}};">
+        <image wx:if="{{item.avatarUrl}}" src="{{item.avatarUrl}}" mode='scaleToFill'></image>
+        <image wx:else src="../../assets/images/lxp-placeholderimage.png" mode='scaleToFill'></image>
+        <view class="detail-aon-text">
+          <text space="nbsp">{{item.text}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</form>
+
+<!-- 温馨提示弹框 遮罩层 -->
+<view class="lxp-mask" wx:if="{{showModal}}"></view>
+<!-- 弹出层 -->
+<view class="lxp-modalDlg" wx:if="{{showModal}}">
+  <!-- 二维码或其他图片 -->
+  <text class="lxp-title">温馨提示</text>
+  <text class="lxp-text">因为您是首次下单，为了方便我们与您沟通，需冒昧的获取您的手机号码，希望您谅解哦~</text>
+  <view class='lxp-bottom-button-view'>
+    <button bindtap="getPhoneCancel" class="lxp-cancel">残忍拒绝</button>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="lxp-ok">给予理解</button>
+  </view>
+</view>
+
+<!-- 团详情分享朋友圈图片 -->
+<view class="lxp-showimage-mask" wx:if="{{showImage}}" bindtap="hideShareImage"></view>
+<!-- 弹出层 -->
+<image class="lxp-showimage-modalDlg" wx:if="{{showImage}}" mode='scaleToFill' src="{{shareImageUrl.length >0 ? shareImageUrl:'../../assets/images/lxp-placeholderimage.png'}}"></image>
+<button wx:if="{{showImage}}" hidden='{{saveImgBtnHidden}}' bindtap="saveShareImage" class="lxp-showimage-save">保存到相册</button>
+<button wx:if="{{showImage}}" hidden='{{openSettingBtnHidden}}' open-type="openSetting" bindopensetting='handleSetting' class="lxp-showimage-save">去授权</button>
+
+<!-- 分享 -->
+<share-view firstProduct="{{firstProduct}}" showShareModel="{{showShareModel}}" bind:closeShareView="closeShareView" />
+
+<!-- 商品大图&详情 -->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}" catchtouchmove="preventTouchMove">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}" bindtap="hideModal">
+    <image class='modals-product-image' src="{{chooseProductDetail.ProductImageUrl.length >0 ?chooseProductDetail.ProductImageUrl:'../../assets/images/lxp-placeholderimage.png'}}" mode='scaleToFill'></image>
+
+    <view class='modals-bottom-view'>
+      <image class='modals-bottom-image' src='../../assets/images/product-detailimage-new-bg.png'></image>
+      <view class="modals-bottom-view-pricenum-left" hidden="{{!chooseProductDetail.Price}}">
+        <view class="modals-bottom-view-pricenum-left-price">¥{{chooseProductDetail.Price/100}}
+          <view class="modals-bottom-view-pricenum-OriginalPrice">¥{{chooseProductDetail.OriginalPrice/100}}</view>
+        </view>
+        <view class='modals-bottom-view-countdown-view'>
+          <text class='modals-bottom-view-countdown-text'>{{countdown}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='modals-message-view'>
+      <view class='modals-message-name'>{{chooseProductDetail.ProductName}}</view>
+      <view class='modals-message-desc'> {{chooseProductDetail.ProductDesc}}
+        <text wx:if="{{chooseProductDetail.LimitTips.length >0}}" class='textredcolor'> [{{chooseProductDetail.LimitTips}}]</text>
+      </view>
+      <view class="modals-sales {{isIpx?'modals-sales-ipx':''}}">剩余{{chooseProductDetail.OnlineQty}}  已售{{chooseProductDetail.TotalSalesQty}}
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 展示购物车数据-->
+<view class="cart-modals cart-modals-bottom-dialog" hidden="{{hideCartModal}}" catchtouchmove="preventTouchMove">
+  <view class="cart-modals-cancel" bindtap="hideCartModal"></view>
+  <view class="cart-bottom-dialog-body cart-bottom-pos" animation="{{animationData}}">
+    <view class="cart-contectview {{isIpx?'cart-ipx-bottom':''}}">
+      <view class='cart-singproduct-title'>
+        已选商品(共{{allBuyQty}}件)
+      </view>
+
+      <scroll-view scroll-y="true" style="height:{{ buyProductList.length >10 ? 810 : (buyProductList.length) *85}}rpx;">
+        <view class='cart-singproduct' wx:for="{{buyProductList}}" wx:key="id">
+          <view class='cart-singproduct-left'>
+            <view class='cart-name'>
+              {{item.ProductName}}
+            </view>
+            <view class='cart-price textredcolor'>
+              ¥{{item.BuyQty * item.Price/100}}
+            </view>
+          </view>
+          <view class='cart-singproduct-right'>
+            <view class="cart-stepper-text" data-index='{{index}}' data-productsysno='{{item.ProductSysNo}}' bindtap="bindCartMinus">
+              <image class='cart-stepper-addproduct-image' src='../../assets/images/product-minus-adle.png' mode="scaleToFill"></image>
+            </view>
+            <text class="cart-number"> {{item.BuyQty}}</text>
+
+            <view class="cart-stepper-text" data-index='{{index}}' data-productsysno='{{item.ProductSysNo}}' bindtap='bindCartPlus'>
+              <image class='cart-stepper-addproduct-image' src='../../assets/images/product-add.png' mode="scaleToFill"></image>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+    </view>
+  </view>
+</view>
+
+<!-- 提示添加小程序 -->
+<!-- <add-tips /> -->
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

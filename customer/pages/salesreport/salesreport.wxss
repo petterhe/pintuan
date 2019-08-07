@@ -1,0 +1,273 @@
+/* pages/salesreport/salesreport.wxss */
+
+.menu {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.tabview {
+  margin: 0rpx auto;
+  width: 375rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-image {
+  margin-left: 6rpx;
+  width: 20rpx;
+  height: 10rpx;
+  /* background-color: purple; */
+}
+
+.select {
+  position: relative;
+  color: #ff1541;
+  /* background-color: yellow; */
+}
+
+.select:after {
+  position: absolute;
+  left: 40%;
+  bottom: 0rpx;
+  content: "";
+  width: 20%;
+  height: 6rpx;
+  background-color: #ff1541;
+  border-radius: 3rpx;
+}
+
+.custom-date-view {
+  width: 100%;
+  height: 110rpx;
+  background-color: white;
+  position: fixed;
+  top: 78rpx;
+  z-index: 1;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-left-view {
+  display: flex;
+  margin-left: 20rpx;
+  height: 100%;
+  width: 560rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-calendar-date {
+  /* height: 50rpx;
+  line-height: 50rpx; */
+  border-radius: 8rpx;
+  padding: 6rpx 10rpx;
+  border: 1rpx solid #666;
+}
+
+.custom-right-view {
+  background-color: #ff1541;
+  margin-right: 20rpx;
+  color: white;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 120rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.scrollview {
+  background-color: #eee;
+}
+
+.content-view {
+  position: relative;
+  background-color: #eee;
+  width: 750rpx;
+  /* margin-top: 10rpx; */
+  display: flex;
+  flex-direction: column;
+}
+
+.top-container {
+  display: flex;
+  height: 70rpx;
+  width: 100%;
+  background-color: #eee;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.title-view {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #333;
+  justify-content: center;
+  /* border-bottom: 1rpx #ccc solid; */
+  /* border-right: 1rpx #ccc solid; */
+}
+
+.title-view-rightline {
+  border-right: 1rpx solid #ccc;
+}
+
+.bottom-container {
+  display: flex;
+  height: 70rpx;
+  width: 100%;
+}
+
+.bottom-view {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: white;
+  justify-content: center;
+}
+
+.bottom-rightline {
+  border-right: 1rpx solid white;
+}
+
+.mid-container {
+  width: 100%;
+  display: flex;
+  /* height: 100%; */
+  flex-direction: column;
+  /* background-color: purple; */
+}
+
+.clumn-container {
+  width: 100%;
+  display: flex;
+  /* flex-direction: row; */
+  height: 70rpx;
+}
+
+.clumn-view {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid #ccc ;
+  /* border-right: 1rpx #ccc solid; */
+  font-size: 28rpx;
+  color: #333;
+}
+
+
+.mySwiper {
+  background-color: yellow;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+/* 遮罩层 */
+
+.lxp-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.5;
+}
+
+/* 日历 */
+
+.box {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: block;
+  /* margin: 20rpx; */
+  font-size: 30rpx;
+  background-color: white;
+}
+
+.box-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  flex-flow: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 14.2%;
+}
+
+.item-content {
+  text-align: center;
+  background-color: white;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-day {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  /* background-color: yellow; */
+  border-radius: 50%;
+}
+
+
+.bk-color-day {
+  background-color: #ff1541;
+  color: white;
+}
+
+.item-content-current-day {
+  flex-grow: 2;
+}
+
+.arrow {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.triangle-left {
+  margin-right: 40rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #333;
+  border-left: 2rpx solid #333;
+  transform: rotate(45deg);
+}
+
+.triangle-right {
+  margin-left: 40rpx;
+  box-sizing: border-box;
+  border-top: 2rpx solid #333;
+  border-right: 2rpx solid #333;
+  transform: rotate(45deg);
+}

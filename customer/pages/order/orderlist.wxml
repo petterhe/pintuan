@@ -1,0 +1,125 @@
+<!--pages/grouplist/grouplist.wxml-->
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+<view class="content">
+  <view class='top-con'>
+    <view class="top_title_con {{tabIndex==0?'select':''}}" bindtap='changeTab' data-index='0' style="color:{{tabIndex==0?'#ff1541':'#333333'}}">
+      今日下单
+    </view>
+    <view class="top_title_con {{tabIndex==1?'select':''}}" bindtap='changeTab' data-index='1' style="color:{{tabIndex==1?'#ff1541':'#333333'}}">
+      今日送达
+    </view>
+    <view class="top_title_con {{tabIndex==2?'select':''}}" bindtap='changeTab' data-index='2' style="color:{{tabIndex==2?'#ff1541':'#333333'}}">
+      {{tab3_title}}
+    </view>
+  </view>
+
+  <scroll-view scroll-y="true" style="height:{{scrollHeight}}px" lower-threshold='30' bindscrolltolower='scrollToLower'>
+    <view wx:if="{{orderlist}}">
+
+      <view wx:for-items="{{orderlist}}" wx:key="name">
+        <view class="order-joincontent">
+
+          <view class="order-joincontent-left-desc">订单编号：{{item.SOSysNo}}
+            <text class='order-copyno textredcolor' catchtap='copySOSysNo' hover-stop-propagation='true' data-sosysno='{{item.SOSysNo}}' space='nbsp'> 复制单号 </text>
+          </view>
+          <view class="order-joincontent-left-desc">客户昵称：{{item.ReceiveName}}
+            <text bindtap="clicktocall" data-phone="{{item.ReceivePhone}}">{{item.ReceivePhone}}</text>
+          </view>
+
+          <view class="order-joincontent-left-desc">
+            <view>订单金额：
+              <text class='textredcolor'>¥{{item.TotalAmt/100}}</text>
+            </view>
+            <text>{{item.StatusName +'\t(' + item.PayStatusName +')'}}</text>
+          </view>
+
+          <view class="order-contentlist">
+            <view class="order-contentlist-left">
+              <view class="order-contentlist-left-desc">购买详情：</view>
+            </view>
+            <view class="order-contentlist-right">
+              <view wx:for-items="{{item.ListOrderItem}}" wx:key="name">{{item.ProductName+'(+'+ item.ActualQty +')'}}</view>
+            </view>
+          </view>
+        </view>
+        <template wx:if="{{!(index == orderlist.length-1)}}" is="cut-off-grayline" />
+      </view>
+
+      <!-- <view wx:for-items="{{orderlist}}" wx:key="i" wx:for-item="orderItem" wx:for-index="i">
+        <view class="order-content">
+          <view class="order-content-left">{{orderItem.SOSysNo}}</view>
+          <view class="order-content-middle">{{orderItem.ReceiveName}} </view>
+          <view class="order-content-right">
+            <view wx:for-items="{{orderItem.ListOrderItem}}" wx:key="j" wx:for-item="productOrderItem">
+              <view class="order-product-name">
+                {{productOrderItem.ProductName}}*{{productOrderItem.OrderQty}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view> -->
+    </view>
+    <view wx:else>
+      <nodata-view content='暂无订单信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+    </view>
+  </scroll-view>
+
+  <!-- 占据按钮的高度，避免按钮遮挡列表 -->
+  <!-- <view wx:if="{{isIphoneX}}" class="placeholder_view"></view> -->
+</view>
+
+<!-- 日历 -->
+<view class="lxp-mask " wx:if="{{isCalendarShow}}" bindtap="hideCalendar"></view>
+<view class="box " wx:if="{{isCalendarShow}}" style="height: {{boxHeight + 'rpx;'}} ">
+  <view class=''>
+    <view class="box-flex ">
+      <view class="flex-item ">
+        <view class="item-content " bindtap="doDay" data-key='left'>
+          <view class="triangle-left arrow "></view>
+        </view>
+      </view>
+      <view class="flex-item item-content-current-day ">
+        <view class="item-content ">{{currentDate}}</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content " bindtap="doDay" data-key="right ">
+          <view class="triangle-right arrow "></view>
+        </view>
+      </view>
+    </view>
+    <view class="box-flex ">
+      <view class="flex-item ">
+        <view class="item-content ">一</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">二</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">三</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">四</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">五</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">六</view>
+      </view>
+      <view class="flex-item ">
+        <view class="item-content ">日</view>
+      </view>
+    </view>
+    <view class="box-flex ">
+      <view class="flex-item " wx:for="{{currentDayList}}" wx:for-index='key' wx:key="{{key}}" bindtap='onCalendarDayTap' data-day="{{item.day}} ">
+        <view class="item-content " wx:if="{{selectDate!=item.date}}">
+          <view class='item-day'>{{item.day}}</view>
+        </view>
+        <view class="item-content " wx:else>
+          <view class='item-day bk-color-day'>{{item.day}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{isShowToast && toastMessage != null && toastMessage.length > 0}}" class="toast">{{toastMessage}}</view>

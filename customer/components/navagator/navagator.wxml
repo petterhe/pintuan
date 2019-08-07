@@ -1,0 +1,4 @@
+<view class="catagary_item" hover-class='hover' bindtap='clickContent' data-index='{{key}}'>
+  <text class="item_title">{{content}}</text>
+  <view class='arrow'></view>
+</view>

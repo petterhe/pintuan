@@ -1,0 +1,59 @@
+<!--pages/myearnings/myearnings.wxml-->
+<view class='earnings-bgview backgroundredcolor textwhitecolor'>
+  <view class='earnings-top-title'>总收益金额(元)</view>
+  <view class='earnings-top-earnings'>{{ ProfitAmt }}</view>
+  <view class='earnings-top-title'>未结算预估收益(元)</view>
+  <view class='earnings-top-earnings'>{{ ForecastProfitAmt }}</view>
+</view>
+
+<van-tabs swipeable animated active="{{ 0 }}" color="#FF1541" line-width="{{ 30 }}" bind:change="onChange">
+  <van-tab wx:for="{{tabsMore}}" wx:key="index" title="{{ item }}">
+    <view wx:if="{{index == 0}}">
+      <scroll-view scroll-y style='height: {{leftScrollHeight + "px"}}' class="earnings-center-content" bindscrolltolower='scrollToLower' bindscrolltoupper='scrollToUpper' lower-threshold='30' upper-threshold='0'>
+        <view wx:if="{{listDateDetail.length >0}}">
+          <view class='earnings-center-dateil' wx:for-items="{{listDateDetail}}" wx:key="name" data-strdate='{{item.StrDate}}' bindtap='clicktoearningsdetail'>
+            <view class='earnings-center-dateil-title'>{{item.StrDate}}</view>
+            <view class='earnings-center-dateil-profile textredcolor'>+{{item.ProfitAmt}}</view>
+          </view>
+        </view>
+        <view wx:else>
+          <nodata-view content='暂无收益信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+        </view>
+      </scroll-view>
+    </view>
+
+    <view wx:elif="{{index == 1}}">
+      <view class='earningsdetail-toptitle-view' wx:if="{{forecastEarnings.length >0}}">
+        <view class='earningsdetail-toptitle-left1'>订单号</view>
+        <view class='earningsdetail-toptitle-left2'>订单金额</view>
+        <view class='earningsdetail-toptitle-left3'>预估收益</view>
+      </view>
+      <scroll-view scroll-y style='height: {{rightScrollHeight + "px"}}' class="earnings-center-right-content">
+        <view wx:if="{{forecastEarnings.length >0}}">
+          <view wx:for-items="{{forecastEarnings}}" wx:key="name" wx:index="index" class="earningsdetail-scrollview-view {{(index+1) % 2 == 0?'':'detail-backcolor'}}">
+            <view class="earningsdetail-toptitle-left1">{{item.SOSysNo}}</view>
+            <view class="earningsdetail-toptitle-left2">{{item.OrderAmt}}</view>
+            <view class='earningsdetail-toptitle-left3 textredcolor'>+{{item.ProfitAmt}}</view>
+          </view>
+        </view>
+        <view wx:else>
+          <nodata-view content='暂无预估收益' imgrc='../../assets/images/lxp-nodataicon.png' />
+        </view>
+      </scroll-view>
+    </view>
+  </van-tab>
+</van-tabs>
+
+
+<!-- <view class='earnings-center-title textredcolor'>收益明细</view>
+<scroll-view scroll-y style='height: {{scrollHeight + "rpx"}}' class="earnings-center-content" bindscrolltolower='scrollToLower' bindscrolltoupper='scrollToUpper' lower-threshold='30' upper-threshold='0'>
+  <view wx:if="{{listDateDetail.length >0}}">
+    <view class='earnings-center-dateil' wx:for-items="{{listDateDetail}}" wx:key="name" data-strdate='{{item.StrDate}}' bindtap='clicktoearningsdetail'>
+      <view class='earnings-center-dateil-title'>{{item.StrDate}}</view>
+      <view class='earnings-center-dateil-profile textredcolor'>+{{item.ProfitAmt}}</view>
+    </view>
+  </view>
+  <view wx:else>
+    <nodata-view content='暂无收益信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</scroll-view> -->

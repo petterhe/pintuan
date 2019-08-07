@@ -1,0 +1,3 @@
+<template name="cut-off-whiteline">
+  <view class='cut-off-whiteline'></view>
+</template>

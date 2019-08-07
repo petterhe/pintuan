@@ -1,0 +1,4 @@
+<view class='wide_line' />
+<navagator content='订单列表' key='1' bind:toNextPage='toNextPage' />
+<navagator content='订单商品' key='2' bind:toNextPage='toNextPage' />
+<navagator content='我的订单' key='3' bind:toNextPage='toNextPage' />

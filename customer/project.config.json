@@ -1,0 +1,125 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.4",
+	"appid": "wx06f5078f0c8c6d6c",
+	"projectname": "lxp_customer",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": 0,
+					"name": "团详情",
+					"pathName": "pages/groupdetail/groupdetail",
+					"query": "PartnerSysNo=10038&PlanSysNo=24&FromUserSysNo=3",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "团详情scene",
+					"pathName": "pages/usercenter/usercenter",
+					"query": "scene=2,1015,1372,1015",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "个人中心",
+					"pathName": "pages/usercenter/usercenter",
+					"query": "scene=3,1,1,10038",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "首页",
+					"pathName": "pages/home/home",
+					"query": "PartnerSysNo=10038&FromUserSysNo=10038&CustomerSysNo=10038",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "销售排行",
+					"pathName": "pages/salesranking/salesranking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "用户中心",
+					"pathName": "pages/usercenter/usercenter",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团长主页",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收益",
+					"pathName": "pages/myearnings/myearnings",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团长销售报表",
+					"pathName": "pages/salesreport/salesreport",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购买成功",
+					"pathName": "pages/buysuccess/buysuccess",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,7 @@
+<view class="custom-class header-block van-clearfix {{ padding ? 'header-block--padding' : '' }}">
+  <view class='head-view'>
+    <view wx:if="{{ line }}" style='background-color: {{linecolor}}' class="header-block__line"> </view>
+    <text wx:if="{{ title }}" style='font-size: {{fontsize}}' class="{{ line ? 'header-block__title__line' :'header-block__title' }}">{{ title }}</text>
+  </view>
+  <slot />
+</view>

@@ -1,0 +1,3 @@
+<template name="cut-off-grayline">
+  <view class='cut-off-grayline'></view>
+</template>

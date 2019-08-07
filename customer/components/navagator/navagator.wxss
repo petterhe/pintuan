@@ -1,0 +1,31 @@
+.catagary_item {
+  display: flex;
+  width: 750rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  align-items: center;
+  margin: auto;
+  padding: 0px 5px;
+  border-bottom: 1px #f1f1f1 solid;
+}
+
+.hover{
+  background-color: #eee;
+}
+
+.item_title {
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.arrow {
+  width: 15rpx;
+  height: 15rpx;
+  border-top: 5rpx solid #666;
+  border-right: 5rpx solid #666;
+  position: absolute;
+  right: 30rpx;
+  transform: rotate(45deg);
+  /* margin-top: 10rpx; */
+}

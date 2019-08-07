@@ -1,0 +1,20 @@
+<!--pages/myearnings/earningsdetail.wxml-->
+
+<view class='earningsdetail-toptitle-view'>
+  <view class='earningsdetail-toptitle-left1'>序号</view>
+  <view class='earningsdetail-toptitle-left2'>收益来源</view>
+  <view class='earningsdetail-toptitle-left3'>收益</view>
+</view>
+
+<scroll-view scroll-y style='height: {{scrollHeight + "rpx"}}' class='earningsdetail-scrollview'>
+  <view wx:if="{{detailList.length >0}}">
+    <view wx:for-items="{{detailList}}" wx:key="name" wx:index="index" class="earningsdetail-scrollview-view {{(index+1) % 2 == 0?'':'detail-backcolor'}}">
+      <view class="earningsdetail-toptitle-left1">{{index+1}}</view>
+      <view class="earningsdetail-toptitle-left2">{{item.Note}}</view>
+      <view class='earningsdetail-toptitle-left3'>+{{item.Amt}}</view>
+    </view>
+  </view>
+  <view wx:else>
+    <nodata-view content='暂无明细信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+  </view>
+</scroll-view>

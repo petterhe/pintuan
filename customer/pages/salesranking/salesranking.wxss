@@ -1,0 +1,84 @@
+/* pages/salesranking/salesranking.wxss */
+
+page {
+  background-color: rgb(241, 241, 241);
+}
+
+.content {
+  background-color: white;
+  display: flex;
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 15rpx;
+}
+
+.ranklist-view {
+  width: 100%;
+  height: 80rpx;
+  margin-top: 10rpx;
+  display: flex;
+}
+
+.image-ranklist-view {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  position: relative;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.image-ranklist-view-image {
+  margin-top: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.image-ranklist-view-ranknum {
+  position: absolute;
+  color: #333;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.ranklist-nameview {
+  /* display: flex; */
+  width: 190rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  align-items: center;
+  color: #333;
+  font-size: 26rpx;
+
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.ranklist-dataview {
+  width: 420rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.ranklist-dataview-histogram {
+  height: 24rpx;
+  line-height: 24rpx;
+  background-color: #ff1541;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+}
+
+.ranklist-histogramtext-view {
+  display: flex;
+  margin-top: 8rpx;
+  width: 420rpx;
+  height: 40rpx;
+}
+
+.ranklist-histogramtext {
+  font-size: 26rpx;
+}

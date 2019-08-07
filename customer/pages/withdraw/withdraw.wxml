@@ -1,0 +1,28 @@
+<!--pages/withdraw/withdraw.wxml-->
+<view class='withdraw-bg-view'>
+  <view class='withdraw-top-view'>
+    <image src='../../assets/images/lxp-wechaticon.png'></image>
+    <view class='withdraw-top-view-titleview'>
+      <view class='withdraw-top-view-title'>提现到微信余额</view>
+      <view class='withdraw-top-view-desc'>2小时内到账</view>
+    </view>
+  </view>
+  <view class='withdraw-center-view'>
+    <view class='withdraw-center-view-top'>
+      <text>提现金额</text>
+    </view>
+    <view class='withdraw-center-view-bottom'>
+      <text>¥</text>
+      <input placeholder='输入金额' placeholder-style='color:lightgray;'></input>
+      <button class='withdraw-center-view-button'>全部提现</button>
+    </view>
+  </view>
+  <view class='withdraw-bottom-view'>
+    <view class='withdraw-top-view-title graycolor'>可提现¥66</view>
+    <view class='withdraw-top-view-desc'>服务费:2.0(费率0.1%)</view>
+  </view>
+</view>
+
+<button class="withdraw-bottombutton" bindtap='createStoreClick'>确认提现</button>
+
+<button class="withdraw-bottombutton-desc {{isIpx?'bottom_ipx':''}}" bindtap='withdrawDescClick'>提现说明</button>

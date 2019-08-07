@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "white",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "add-tips": "/components/add-tips/index"
+  }
+}

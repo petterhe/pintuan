@@ -1,0 +1,33 @@
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+
+<van-tabs swipeable animated active="{{ 0 }}" color="#FF1541" line-width="{{ 30 }}" bind:change="onChange">
+  <van-tab wx:for="{{tabsMore}}" wx:key="index" title="{{ item }}">
+
+    <scroll-view scroll-y style='height: {{scrollHeight + "px"}}' class="content">
+      <view wx:if="{{ranklist.length >0}}">
+        <view wx:for-items="{{ranklist}}" wx:key="name">
+          <view class='ranklist-view'>
+            <view class='image-ranklist-view'>
+              <image wx:if="{{item.imageSrc.length >0}}" class='image-ranklist-view-image' src='{{item.imageSrc}}'></image>
+              <view hidden="{{item.RankNum <=3}}" class="image-ranklist-view-ranknum textfont-size-25">{{item.RankNum}}</view>
+            </view>  
+            <text class='ranklist-nameview'>{{item.CustomerNickName}}</text>
+            <view class='ranklist-dataview'>
+              <!-- <view class='ranklist-histogramtext-view'>
+                <text class='ranklist-histogramtext textredcolor' space='nbsp'>¥{{item.OrderAmt}}<text class='textfont-size-22'>/{{item.OrderCount}}单</text></text>
+              </view> -->
+              <view class='ranklist-dataview-histogram' style='width:{{item.histogramlength}}rpx'>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:else>
+        <nodata-view content='暂无活跃度信息' imgrc='../../assets/images/lxp-nodataicon.png' />
+      </view>
+    </scroll-view>
+  </van-tab>
+</van-tabs>
+
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

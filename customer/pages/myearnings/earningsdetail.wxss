@@ -1,0 +1,46 @@
+/* pages/myearnings/earningsdetail.wxss */
+
+.earningsdetail-toptitle-view {
+  display: flex;
+  /* margin: 0 20rpx; */
+  height: 80rpx;
+  line-height: 80rpx;
+  /* background-color: green; */
+  color: #333;
+  font-size: 32rpx;
+  /* border-bottom: 1rpx solid #F1F1F1; */
+}
+
+.earningsdetail-toptitle-left1 {
+  width: 15%;
+  margin-left: 20rpx;
+  /* background-color: red; */
+}
+
+.earningsdetail-toptitle-left2 {
+  width: 65%;
+  /* background-color: yellow; */
+}
+
+.earningsdetail-toptitle-left3 {
+  width: 20%;
+  margin-right: 20rpx;
+  text-align: right;
+}
+
+.earningsdetail-scrollview{
+  display: flex;
+  width: 750rpx;
+  /* margin-left: 20rpx; */
+}
+.earningsdetail-scrollview-view{
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* margin: 10rpx 20rpx; */
+  color: #333;
+  font-size: 29rpx;
+}
+.detail-backcolor{
+  background-color: rgb(255, 248, 248);
+}

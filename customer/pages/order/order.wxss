@@ -1,0 +1,128 @@
+/* pages/order/order.wxss */
+
+.content {
+  background-color: white;
+}
+
+.order-content {
+  margin: 20rpx 20rpx 0rpx 20rpx;
+  /* height: 230rpx; */
+  display: flex;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+
+.order-content-left {
+  width: 80%;
+  /* height: 100%; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-content-left-title {
+  height: 48rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.order-content-left-desc {
+  height: 48rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-content-right {
+  width: 20%;
+  height: 100%;
+  text-align: right;
+  color: #ff1541;
+  font-size: 30rpx;
+}
+
+/* 我参与的团购 */
+.order-joincontent {
+  margin: 20rpx;
+}
+
+.order-joincontent-left-title {
+  height: 50rpx;
+  color: #333;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+
+.order-joincontent-left-desc {
+  display: flex;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #666;
+  font-size: 26rpx;
+  justify-content: space-between;
+}
+
+.order-copyno{
+  height: 45rpx;
+  line-height: 45rpx;
+  border: 1rpx solid #FF1541;
+  border-radius: 10rpx;
+}
+
+.order-contentlist {
+  display: flex;
+}
+
+.order-contentlist-left {
+  width: 18%;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-contentlist-right {
+  width: 82%;
+  height: 100%;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-content-button-view{
+  margin: 0 20rpx;
+  height: 86rpx;
+  /* border-top: 1rpx solid #f1f1f1; */
+}
+.order-content-button-view button{
+  width: 180rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  font-size: 26rpx;
+  color: #333333; 
+  float: right;
+  margin-top: 16rpx;
+}
+
+.order-reimburse-button-view{
+  margin: 0 20rpx;
+  height: 86rpx;
+  border-top: 1rpx solid #f1f1f1;
+}
+.order-reimburse-button-view button{
+  width: 180rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  font-size: 26rpx;
+  color: #333333; 
+  float: right;
+  margin-top: 16rpx;
+}
+
+.order-content-loading {
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: white;
+  text-align: center;
+  font-size: 14px;
+}

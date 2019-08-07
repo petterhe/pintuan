@@ -1,0 +1,8 @@
+<!-- lxp-nodataicon -->
+<view class="custom-class nodata-view">
+  <view class='lxp-nodata-view'>
+    <!-- <image src="{{ imgrc }}" bindtap="refreshdata"></image> -->
+    <image src="{{ imgrc }}"></image>
+    <view>{{ content }}</view>
+  </view>
+</view>

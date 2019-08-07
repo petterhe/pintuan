@@ -1,0 +1,4 @@
+<!--pages/withdrawdesc/withdrawdesc.wxml-->
+<view wx:for-items="{{ListGroup}}" wx:key="name">
+  <view class='withdrawdesc-text'>{{item}}</view>
+</view>

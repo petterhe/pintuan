@@ -1,0 +1,179 @@
+/* pages/buysuccess/buysuccess.wxss */
+
+page{
+  background-color: rgb(241, 241, 241);
+}
+
+.buysuccess-message-allview{
+  background-color: white;
+  margin-top: 0rpx;
+  margin-bottom: 40rpx;
+  overflow: hidden;
+}
+
+.buysuccess-message-view{
+  background-color: #FFF6F8;
+  border-radius: 14rpx;
+  /* margin: 30rpx 30rpx 20rpx 30rpx; */
+  margin: 40rpx 30rpx;
+  overflow: hidden;
+  padding: 20rpx 0;
+}
+
+.buysuccess-message-view-title{
+  background-color: white;
+  margin: 40rpx 80rpx;
+  border-radius: 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.buysuccess-message-view-orderview{
+  height: 144rpx;
+  /* line-height: 144rpx; */
+  font-size: 28rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1rpx solid #F1F1F1;
+}
+.buysuccess-message-view-ordertitle{
+  font-size: 46rpx;
+}
+
+/* 购买记录 */
+.buysuccess-message-view-topmessageview {
+  margin: 20rpx 50rpx 20rpx 80rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buysuccess-message-view-lefthead-name{
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.buysuccess-message-view-p
+{
+  margin-left: 160rpx;
+  margin-right: 50rpx;
+  margin-top: 10rpx;
+  height: 130rpx;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  font-family: PingFang-SC-Medium;
+  color: #333;
+}
+
+.buysuccess-message-view-list {
+  height: 50rpx;
+  line-height: 50rpx;
+} 
+.buysuccess-productname{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+/* .buysuccess-message-view-list {
+  margin-left: 160rpx;
+  margin-right: 50rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  font-family: PingFang-SC-Medium;
+  color: #333;
+} */
+
+.buysuccess-message-view-placeholder{
+  height: 1rpx;
+  margin-bottom: 40rpx;
+}
+
+.buysuccess-message-view-headimage {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.buysuccess-message-view-headimage image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.buysuccess-message-view-name {
+  margin-left: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+.buysuccess-message-view-headimage-pay{
+  width: 154rpx;
+  height: 124rpx;
+  float: right;
+  /* margin-right: 10rpx; */
+}
+
+.buysuccess-leftBtn { 
+ margin-left:100rpx;
+ float:left;
+ color: #333;
+}
+.buysuccess-rightBtn { 
+ margin-right:100rpx;
+ float:right;
+ color: red;
+}
+.buysuccess-rightBtn::after{
+ border:1px solid red;
+}
+
+.button-common{
+ width: 220rpx; 
+ margin-top: 40rpx; 
+ margin-bottom: 20rpx;
+ height: 60rpx;
+ line-height: 60rpx;
+ background-color: white;
+ font-size: 25rpx;
+}
+.buysuccess-message-view-button{
+  display: flex;
+  border-top: 1rpx solid #F1F1F1;
+  /* border-bottom: 1rpx solid #F1F1F1; */
+}
+
+.buysuccess-message-tip{
+  margin: 20rpx 40rpx;
+  color: #999;
+  font-size: 22rpx;
+  text-align: center;
+}
+.buysuccess-message-warning{
+  margin: 0rpx 40rpx;
+  display: flex;
+}
+.buysuccess-message-imageview{
+  width: 5%;
+  display: flex;
+
+}
+
+.buysuccess-message-imageview image{
+  margin-top: 6rpx;
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.buysuccess-message-warntext{
+  width: 95%;
+  color: #999;
+  font-size: 22rpx;
+}

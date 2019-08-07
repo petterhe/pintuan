@@ -1,0 +1,19 @@
+<!-- 温馨提示弹框 遮罩层 -->
+<view class="lxp-mask" wx:if="{{showShareModel}}"></view>
+<!-- 弹出层 -->
+<view class="lxp-modalDlg" wx:if="{{showShareModel}}">
+  <view class="lxp-topimage-view-close">
+    <view class="lxp-topimage-view-closeimageview" bindtap="closeview">
+      <image src='../../assets/images/lxp-clearblack.png' mode='scaleToFill'></image>
+    </view>
+  </view>
+  <!-- 二维码或其他图片 -->
+  <view class="lxp-topimage-view">
+    <image class="lxp-topimage" src="{{firstProduct.ProductImageUrl ? firstProduct.ProductImageUrl:'../../assets/images/lxp-placeholderimage.png'}}" mode='scaleToFill'></image>
+  </view>
+  <text class="lxp-title"><text class="lxp-title-black">我买了</text>{{firstProduct.ProductName}}
+  <text class="lxp-title-black">感觉还不错，你也可以试试~</text></text>
+  <view class='lxp-bottom-button-view'>
+    <button open-type='share' class="lxp-ok">分享给好友</button>
+  </view>
+</view>

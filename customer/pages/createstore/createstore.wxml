@@ -1,0 +1,63 @@
+<!--pages/createstore/createstore.wxml-->
+<import src="../../components/cut-off-line/cut-off-grayline.wxml" />
+<import src="../../components/cut-off-line/cut-off-whiteline.wxml" />
+
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="{{isIpx?'createstore-form-content-ipx':'createstore-form-content'}}">
+    <view class="createstore-storeIcon-view">
+      <image class="createstore-storeIcon {{headIconRadia ==true ? 'createstore-storeIcon-view-radio':''}}" src='{{createstoreupdateicon}}' bindtap="uploadImage" data-imagetype='1'>
+        <view class="createstore-storeIcon-progress" wx:if="{{createstoreupdateicon_upload_percent < 100 &&createstoreupdateicon_upload_percent > 0}}">{{createstoreupdateicon_upload_percent}}%</view>
+      </image>
+    </view>
+    <header-block title="店铺信息" line="{{ true }}" linecolor="#ff1541">
+      <van-cell-group>
+        <van-field value="{{ storeName }}" label="店铺名称:" placeholder="专属你的店铺，优先创建优先占有" rows="1" clearable bind:change="onFieldChange" id="storeName" />
+        <van-field value="{{ storeDesc }}" label="店铺简介:" type="textarea" placeholder="描述店铺的品牌风格，让你的店铺脱颖而出" bind:change="onFieldChange" id="storeDesc" rows="1" autosize center clearable use-button-slot/>
+        <van-field value="{{ storeAllAddress }}" label="店铺位置:" placeholder="点击选择，您将独占社区" rows="1" autosize center disabled icon="arrow" icon-class="icon" bindtap="chooseLocation" />
+        <van-field value="{{ storeDetailAddress }}" label="详细地址:" placeholder="请输入店铺具体街道，门牌号" bind:change="onFieldChange" id="storeDetailAddress" rows="1" autosize center clearable use-button-slot/>
+      </van-cell-group>
+    </header-block>
+
+    <template is="cut-off-whiteline" />
+    <template is="cut-off-whiteline" />
+    <template is="cut-off-whiteline" />
+
+    <header-block title="团长信息" line="{{ true }}" linecolor="#ff1541">
+      <van-cell-group>
+        <van-field value="{{ regimentalName }}" label="姓名:" placeholder="请填写您的姓名" rows="1" bind:change="onFieldChange" id="regimentalName" clearable />
+        <!-- <van-field value="{{ regimentalIdCard }}" label="身份证号:" placeholder="请填写您的身份证号" bind:change="onFieldChange" id="regimentalIdCard" clearable /> -->
+        <van-field value="{{ WXID }}" label="微信号:" placeholder="请填写您微信昵称下面的微信号" bind:change="onFieldChange" id="WXID" clearable />
+        <van-field value="{{ regimentalPhone }}" center clearable disabled label="联系方式:" placeholder="请获取联系方式" use-button-slot bind:change="onFieldChange" id="regimentalPhone">
+          <button slot="button" class='createstore-getphonenum-button' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取</button>
+        </van-field>
+
+        <!-- <view class='createstore-uploader__view'>
+          <van-field class="createstore-field-signtitle" value="{{  }}" label="身份证正面:" disabled border="{{ false }}" />
+          <image class="createstore-uploader__bd" src='{{shenfenzhengzhengmian}}' bindtap="uploadImage" data-imagetype='2' mode='widthFix'>
+            <view class="createstore-uploader-progress" wx:if="{{shenfenzhengzhengmian_upload_percent < 100 &&shenfenzhengzhengmian_upload_percent > 0}}">{{shenfenzhengzhengmian_upload_percent}}%</view>
+          </image>
+        </view>
+
+        <view class='createstore-uploader__view'>
+          <van-field class="createstore-field-signtitle" value="{{  }}" label="身份证背面:" disabled border="{{ false }}" />
+          <image class="createstore-uploader__bd" src='{{shenfenzhengfanmian}}' bindtap="uploadImage" data-imagetype='3' mode='widthFix'>
+            <view class="createstore-uploader-progress" wx:if="{{shenfenzhengfanmian_upload_percent < 100 &&shenfenzhengfanmian_upload_percent > 0}}">{{shenfenzhengfanmian_upload_percent}}%</view>
+          </image>
+        </view> -->
+
+      </van-cell-group>
+    </header-block>
+
+    <view class='createstore_agree'>
+
+      <van-checkbox value="{{ agreeService }}" data-key="{{ agreeService }}" checked-color="#ff1541" bind:change="checkboxChange">
+        我已阅读并同意
+      </van-checkbox>
+      <text class='createstore_agree_text' bindtap='serviceAgreementClick'>《{{miniAppName}}服务协议》</text>
+    </view>
+    <button class="createstore-bottombutton" disabled='{{disable}}' form-type="submit" bindtap='createStoreClick'>{{createStoreDesc}}</button>
+  </view>
+</form>
+
+<!-- 消息提示 -->
+<van-notify id="message-notify" />

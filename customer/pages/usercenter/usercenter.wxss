@@ -1,0 +1,217 @@
+/* pages/usercenter/usercenter.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 320rpx;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.createstore-getphonenum-button {
+  margin-top: 20rpx;
+  color: white;
+  font-size: 25rpx;
+  width: 220rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #ff1541;
+}
+
+.createstore-getphonenum-button::after {
+  border: none;
+}
+
+.usercenter-title-view {
+  display: flex;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #333;
+  font-size: 30rpx;
+  /* text-align: center; *//* padding-left: 20rpx; */
+  border-bottom: 1rpx solid #f1f1f1;
+  /* background-color: yellow; */
+  /* justify-content: space-between; */
+}
+
+.usercenter-title-view-title {
+  margin: 0rpx 20rpx;
+  width: 250rpx;
+}
+
+.changelocation {
+  display: flex;
+  flex-direction: row-reverse;
+  /* margin-right: 5rpx; */
+  width: 440rpx;
+}
+
+.changelocation-address {
+  max-width: 415rpx;
+  color: #666;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.changelocation_right {
+  width: 18rpx;
+  height: 18rpx;
+  margin: auto 0rpx auto 5rpx;
+  box-sizing: border-box;
+  border-top: 2rpx solid #666;
+  border-right: 2rpx solid #666;
+  transform: rotate(45deg);
+}
+
+/* 我参与的团购 */
+
+.usercenter-buyrecord-view-ipx {
+  bottom: 68rpx;
+}
+
+.order-joincontent {
+  margin: 20rpx;
+  /* width: 710rpx;
+  background-color: purple; */
+}
+
+.order-joincontent-left-title {
+  height: 50rpx;
+  color: #333;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+
+.order-joincontent-left-desc {
+  display: flex;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #666;
+  font-size: 26rpx;
+  justify-content: space-between;
+}
+.order-copyno{
+  height: 45rpx;
+  line-height: 45rpx;
+  border: 1rpx solid #FF1541;
+  border-radius: 10rpx;
+}
+
+.order-contentlist {
+  display: flex;
+}
+
+.order-contentlist-left {
+  width: 18%;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-contentlist-right {
+  width: 82%;
+  height: 100%;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-reimburse-button-view {
+  margin: 0 20rpx;
+  height: 86rpx;
+  border-top: 1rpx solid #f1f1f1;
+}
+
+.order-reimburse-button-view button {
+  width: 160rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  font-size: 26rpx;
+  color: #333;
+  float: right;
+  margin-top: 16rpx;
+}
+
+.visitstore-view {
+  height: 100rpx;
+  margin: 20rpx 20rpx;
+  display: flex;
+}
+
+.visitstore-left {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.visitstore-left image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.visitstore-center {
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  width: 450rpx;
+  height: 100rpx;
+}
+
+.visitstore-center-name {
+  margin-top: 3rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  color: #333;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visitstore-center-desc {
+  height: 35rpx;
+  line-height: 35rpx;
+  color: #666;
+  font-size: 25rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visitstore-right {
+  width: 140rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.visitstore-right-view {
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  color: #ff1541;
+  background-color: white;
+  border: 1rpx solid #ff1541;
+  border-radius: 10rpx;
+  text-align: center;
+}

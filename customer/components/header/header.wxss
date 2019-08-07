@@ -1,0 +1,31 @@
+@import '../../zanui/dist/common/index.wxss';
+
+.head-view {
+  display: flex;
+}
+.header-block__line {
+  width: 4px;
+  margin: 7px 0px 7px 7px;
+  /* background-color: purple; */
+}
+.header-block__title {
+  margin: 5px 15px;
+  font-weight: 400;
+  font-size: 14px;
+  color: black;
+}
+.header-block__title__line{
+  margin: 5px 4px;
+  font-weight: 400;
+  font-size: 14px;
+  color: black;
+}
+
+.header-block--padding {
+  padding: 0 5px;
+}
+
+.header-block--padding .header-block__title {
+  padding-left: 0;
+}
+

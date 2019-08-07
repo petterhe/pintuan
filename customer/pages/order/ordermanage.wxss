@@ -1,0 +1,5 @@
+.wide_line {
+  width: 750rpx;
+  height: 20rpx;
+  background-color: #f1f1f1;
+}
